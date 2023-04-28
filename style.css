@@ -1,0 +1,77 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.virtual-keyboard-ru,
+.output-panel {
+display: block;
+padding: 5px;
+margin: 10px;
+}
+
+.output-panel{
+    width: 828px;
+    height: 200px;
+}
+.virtual-keyboard-ru{
+    background-color: #0c0c0c;
+}
+
+.line{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    margin: 0 auto 5px;
+}
+
+.digital {
+    min-width: 50px;
+    height: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 2px;
+    color: #f5f0f0;
+    background-color: #0c0c0c;
+    margin-left: 4px;
+    box-shadow: 0px 2px 35px 14px rgba(253, 252, 252, 0.04);
+    cursor: pointer;
+  }
+  .Tab {
+    width: 54px;
+  }
+  .Backspace {
+    width: 108px;
+  }
+  .CapsLock,
+  .ShiftLeft {
+    width: 112px;
+  }
+  .Enter,
+  .ShiftRight {
+    width: 101px;
+  }
+
+  .ControlLeft,
+  .ControlRight,
+  .MetaLeft,
+  .AltLeft{
+    width: 35px;
+  }
+  .Space {
+    width: 382px;
+  }
+  .digital__small,
+  .digital__shift {
+    display: block;
+    width: 100%;
+    min-height: 50px;
+  }
+  .covert{
+    display: none;
+  }
