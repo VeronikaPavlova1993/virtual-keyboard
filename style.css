@@ -16,6 +16,7 @@ margin: 10px;
     width: 828px;
     height: 200px;
 }
+/* Start styles for Russian*/
 .virtual-keyboard-ru{
     background-color: #0c0c0c;
 }
@@ -75,3 +76,4 @@ margin: 10px;
   .covert{
     display: none;
   }
+  /* End styles for Russian*/

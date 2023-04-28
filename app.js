@@ -11,10 +11,8 @@ const virtualKeyboardLangRu = document.createElement('div');
 virtualKeyboardLangRu.className = "virtual-keyboard-ru";
 wrapper.append(virtualKeyboardLangRu);
 
-
 let language = 'ru';
 let capsLock = false;
-
 
 const keyboardRus = [
 [['Backquote', 'ё', 'Ё'],
