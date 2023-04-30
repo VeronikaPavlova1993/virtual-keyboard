@@ -1,3 +1,6 @@
+
+//let capslock = false;
+
 const wrapper = document.createElement('div');
 wrapper.className = "wrapper";
 document.body.prepend(wrapper);
@@ -95,11 +98,11 @@ for (let i = 0; i < keyboardRus.length; i++) {
    digital.classList.add(keyboardRus[i][j][0]);
 
    const digitalRus = document.createElement('div');
-   digitalRus.className = "digital-rus";
+   digitalRus.className = "digital-rus rus";
    digital.appendChild(digitalRus);
 
    const digitalEn = document.createElement('div');
-   digitalEn.className = "digital-en";
+   digitalEn.className = "digital-en en";
    digital.appendChild(digitalEn);
 
    const digitalSmallRus = document.createElement('span');
@@ -123,4 +126,100 @@ for (let i = 0; i < keyboardRus.length; i++) {
    digitalShiftEn.innerHTML = `${keyboardRus[i][j][4]}`
 };
 }
+
+let digitals = document.querySelectorAll('.digital-rus span');
+let spaceDigital = document.querySelector('.digital.Space');
+let shiftRightDigital = document.querySelector('.digital.ShiftRight');
+let shiftLeftDigital = document.querySelector('.digital.ShiftLeft');
+let capsLockDigital = document.querySelector('.digital.CapsLock');
+let altLeftDigital = document.querySelector('.digital.AltLeft');
+let altRightDigital = document.querySelector('.digital.AltRight');
+let ctrlRightDigital = document.querySelector('.digital.ControlRight');
+let ctrlLeftDigital = document.querySelector('.digital.ControlLeft');
+let metaLeftDigital = document.querySelector('.digital.MetaLeft');
+
+
+window.addEventListener('keydown', function(e) {
+    for(let i = 0; i < digitals.length; i++) {
+        if(e.key == digitals[i].textContent) {
+            digitals[i].classList.add('active')
+        }
+        if(e.code == 'Space') {
+            spaceDigital.classList.add('active')
+        }
+        if(e.code == 'AltLeft') {
+            altLeftDigital.classList.add('active')
+        }
+        if(e.code == 'AltRight') {
+            altRightDigital.classList.add('active')
+        }
+        if(e.code == 'ControlRight') {
+            ctrlRightDigital.classList.add('active')
+        }
+        if(e.code == 'ControlLeft') {
+            ctrlLeftDigital.classList.add('active')
+        }
+        if(e.code == 'MetaLeft') {
+            metaLeftDigital.classList.add('active')
+        }
+        if(e.code == 'ShiftRight') {
+            shiftRightDigital.classList.remove('active')
+        }
+        if(e.code == 'ShiftLeft') {
+            shiftLeftDigital.classList.remove('active')
+        }
+        if(e.code == 'CapsLock') {
+            capsLockDigital.classList.toggle('active');
+        }
+    }
+})
+window.addEventListener('keyup', function(e) {
+    for(let i = 0; i <digitals.length; i++) {
+        if(e.key == digitals[i].textContent) {
+            digitals[i].classList.remove('active')
+            digitals[i].classList.add('remove')
+        }
+        if(e.code == 'Space') {
+            spaceDigital.classList.remove('active');
+            spaceDigital.classList.add('remove');
+        }
+        if(e.code == 'ShiftLeft') {
+            shiftRightDigital.classList.remove('active')
+            shiftRightDigital.classList.remove('remove')
+        }
+        if(e.code == 'ShiftRight') {
+            shiftLeftDigital.classList.remove('active')
+            shiftLeftDigital.classList.remove('remove')
+        }
+        if(e.code == 'AltLeft') {
+            altLeftDigital.classList.remove('active')
+            altLeftDigital.classList.remove('remove')
+        }
+        if(e.code == 'AltRight') {
+            altRightDigital.classList.remove('active')
+            altRightDigital.classList.remove('remove')
+        }
+        if(e.code == 'ControlRight') {
+            ctrlRightDigital.classList.remove('active')
+            ctrlRightDigital.classList.remove('remove')
+        }
+        if(e.code == 'ControlLeft') {
+            ctrlLeftDigital.classList.remove('active')
+            ctrlLeftDigital.classList.remove('remove')
+        }
+        if(e.code == 'MetaLeft') {
+            metaLeftDigital.classList.remove('active')
+            metaLeftDigital.classList.remove('remove')
+        }
+        if(e.code == 'MetaLeft') {
+            metaLeftDigital.classList.remove('active')
+            metaLeftDigital.classList.remove('remove')
+        }
+        setTimeout(()=> {
+            digitals[i].classList.remove('remove')
+        },200)
+    }
+})
+
+
 

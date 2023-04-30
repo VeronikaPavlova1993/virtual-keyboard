@@ -78,7 +78,7 @@ margin: 10px;
   }
   /* End styles for Russian*/
 
-  .active-digital {
+  .active {
     transform: scale(1.2);
     background-color: rgb(169, 171, 173);
     color: #0c0c0c;
