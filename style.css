@@ -73,7 +73,14 @@ margin: 10px;
     width: 100%;
     min-height: 50px;
   }
-  .covert{
+  .hidden {
     display: none;
   }
   /* End styles for Russian*/
+
+  .active-digital {
+    transform: scale(1.2);
+    background-color: rgb(169, 171, 173);
+    color: #0c0c0c;
+    transition: 0.5s;
+  }

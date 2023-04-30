@@ -11,78 +11,76 @@ const virtualKeyboardLangRu = document.createElement('div');
 virtualKeyboardLangRu.className = "virtual-keyboard-ru";
 wrapper.append(virtualKeyboardLangRu);
 
-let language = 'ru';
-let capsLock = false;
 
 const keyboardRus = [
-[['Backquote', 'ё', 'Ё'],
-['Digit1', '1', '!'],
-['Digit2', '2', '"'],
-['Digit3', '3', '№'],
-['Digit4', '4', ';'],
-['Digit5', '5', '%'],
-['Digit6', '6', ':'],
-['Digit7', '7', '?'],
-['Digit8', '8', '*'],
-['Digit9', '9', '('],
-['Digit0', '0', ')'],
-['Minus', '-', '_'],
-['Equal', '=', '+'],
-['Backspace', 'Backspace', 'Backspace'],
+[['Backquote', 'ё', 'Ё', '`', '~'],
+['Digit1', '1', '!', '1', '!'],
+['Digit2', '2', '"', '2', '@'],
+['Digit3', '3', '№', '3', '#'],
+['Digit4', '4', ';', '4', '$'],
+['Digit5', '5', '%', '5', '%'],
+['Digit6', '6', ':', '6', '^'],
+['Digit7', '7', '?', '7', '&'],
+['Digit8', '8', '*', '8', '*'],
+['Digit9', '9', '(', '9', '('],
+['Digit0', '0', ')', '0', ')'],
+['Minus', '-', '_', '-', '_'],
+['Equal', '=', '+', '=', '+'],
+['Backspace', 'Backspace', 'Backspace', 'Backspace', 'Backspace'],
 ],
-[['Tab', 'Tab', 'Tab'],
-['KeyQ', 'й', 'Й'],
-['KeyW', 'ц', 'Ц'],
-['KeyE', 'у', 'У'],
-['KeyR', 'к', 'К'],
-['KeyT', 'е', 'Е'],
-['KeyY', 'н', 'Н'],
-['KeyU', 'г', 'Г'],
-['KeyI', 'ш', 'Ш'],
-['KeyO', 'щ', 'Щ'],
-['KeyP', 'з', 'З'],
-['BracketLeft', 'х', 'Х'],
-['BracketRight', 'ъ', 'Ъ'],
-['Backslash', '\\', '/'],
-['Delete', 'Del', 'Del'],
+[['Tab', 'Tab', 'Tab', 'Tab', 'Tab'],
+['KeyQ', 'й', 'Й', 'q', 'Q'],
+['KeyW', 'ц', 'Ц', 'w', 'W'],
+['KeyE', 'у', 'У', 'e', 'E'],
+['KeyR', 'к', 'К', 'r', 'R'],
+['KeyT', 'е', 'Е', 't', 'T'],
+['KeyY', 'н', 'Н', 'y', 'Y'],
+['KeyU', 'г', 'Г', 'u', 'U'],
+['KeyI', 'ш', 'Ш', 'i', 'I'],
+['KeyO', 'щ', 'Щ', 'o', 'O'],
+['KeyP', 'з', 'З', 'p', 'P'],
+['BracketLeft', 'х', 'Х', '[','{'],
+['BracketRight', 'ъ', 'Ъ', ']', '}'],
+['Backslash', '\\', '/', '\\', '|'],
+['Delete', 'Del', 'Del', 'Del', 'Del'],
 ],
-[['CapsLock', 'CapsLock', 'CapsLock'],
-['KeyA', 'ф', 'Ф'],
-['KeyS', 'ы', 'Ы'],
-['KeyD', 'в', 'В'],
-['KeyF', 'а', 'А'],
-['KeyG', 'п', 'П'],
-['KeyH', 'р', 'Р'],
-['KeyJ', 'о', 'О'],
-['KeyK', 'л', 'Л'],
-['KeyL', 'д', 'Д'],
-['Semicolon', 'ж', 'Ж'],
-['Quote', 'э', 'Э'],
-['Enter', 'Enter', 'Enter'],
+[['CapsLock', 'CapsLock', 'CapsLock', 'CapsLock', 'CapsLock'],
+['KeyA', 'ф', 'Ф', 'a', 'A'],
+['KeyS', 'ы', 'Ы', 's', 'S'],
+['KeyD', 'в', 'В', 'd', 'D'],
+['KeyF', 'а', 'А', 'f', 'F'],
+['KeyG', 'п', 'П', 'g', 'G'],
+['KeyH', 'р', 'Р', 'h', 'H'],
+['KeyJ', 'о', 'О', 'j', 'J'],
+['KeyK', 'л', 'Л', 'k', 'K'],
+['KeyL', 'д', 'Д', 'l', 'L'],
+['Semicolon', 'ж', 'Ж', ';', ':'],
+['Quote', 'э', 'Э', `'`, `"`],
+['Enter', 'Enter', 'Enter', 'Enter', 'Enter'],
 ],
-[['ShiftLeft', 'Shift', 'Shift'],
-['KeyZ', 'я', 'Я'],
-['KeyX', 'ч', 'Ч'],
-['KeyC', 'с', 'С'],
-['KeyV', 'м', 'М'],
-['KeyB', 'и', 'И'],
-['KeyN', 'т', 'Т'],
-['KeyM', 'ь', 'Ь'],
-['Comma', 'б', 'Б'],
-['Period', 'ю', 'Ю'],
-['Slash', '.', ','],
-['ArrowUp', '▲', '▲'],
-['ShiftRight', 'Shift', 'Shift'],
+[['ShiftLeft', 'Shift', 'Shift', 'Shift', 'Shift'],
+['KeyZ', 'я', 'Я', 'z', 'Z'],
+['KeyX', 'ч', 'Ч', 'x', 'X'],
+['KeyC', 'с', 'С', 'c', 'C'],
+['KeyV', 'м', 'М', 'v', 'V'],
+['KeyB', 'и', 'И', 'b', 'B'],
+['KeyN', 'т', 'Т', 'n', 'N'],
+['KeyM', 'ь', 'Ь', 'm', 'M'],
+['Comma', 'б', 'Б', '.', '<'],
+['Period', 'ю', 'Ю', '.', '>'],
+['Slash', '.', ',', '/', '?'],
+['ArrowUp', '▲', '▲', '▲', '▲'],
+['ShiftRight', 'Shift', 'Shift', 'Shift', 'Shift'],
 ],
-[['ControlLeft', 'Ctrl', 'Ctrl'],
-['MetaLeft', 'Win', 'Win'],
-['AltLeft', 'Alt', 'Alt'],
-['Space', ' ', ' '],
-['AltRight', 'Alt', 'Alt'],
-['ArrowLeft', '◄', '◄'],
-['ArrowDown', '▼', '▼'],
-['ArrowRight', '►', '►'],
-['ControlRight', 'Ctrl', 'Ctrl'],
+[['ControlLeft', 'Ctrl', 'Ctrl', 'Ctrl', 'Ctrl'],
+['MetaLeft', 'Win', 'Win', 'Win', 'Win'],
+['AltLeft', 'Alt', 'Alt', 'Alt', 'Alt'],
+['Space', ' ', ' ', ' ', ' '],
+['AltRight', 'Alt', 'Alt', 'Alt', 'Alt'],
+['ArrowLeft', '◄', '◄',  '◄',  '◄'],
+['ArrowDown', '▼', '▼', '▼', '▼'],
+['ArrowRight', '►', '►', '►', '►'],
+['ControlRight', 'Ctrl', 'Ctrl', 'Ctrl', 'Ctrl'],
 ],
 ]
 
@@ -96,14 +94,33 @@ for (let i = 0; i < keyboardRus.length; i++) {
    line.appendChild(digital);
    digital.classList.add(keyboardRus[i][j][0]);
 
-   const digitalSmall = document.createElement('span');
-   digitalSmall.className = "digital__small";
-   digital.appendChild(digitalSmall);
-   digitalSmall.innerHTML = `${keyboardRus[i][j][1]}`
+   const digitalRus = document.createElement('div');
+   digitalRus.className = "digital-rus";
+   digital.appendChild(digitalRus);
 
-   const digitalShift = document.createElement('span');
-   digitalShift.className = "digital__shift covert";
-   digital.appendChild(digitalShift);
-   digitalShift.innerHTML = `${keyboardRus[i][j][2]}`
+   const digitalEn = document.createElement('div');
+   digitalEn.className = "digital-en";
+   digital.appendChild(digitalEn);
+
+   const digitalSmallRus = document.createElement('span');
+   digitalSmallRus.className = "digital__small digital__small_rus";
+   digitalRus.appendChild(digitalSmallRus);
+   digitalSmallRus.innerHTML = `${keyboardRus[i][j][1]}`
+
+   const digitalShiftRus = document.createElement('span');
+   digitalShiftRus.className = "digital__shift digital__shift_rus hidden";
+   digitalRus.appendChild(digitalShiftRus);
+   digitalShiftRus.innerHTML = `${keyboardRus[i][j][2]}`
+
+   const digitalSmallEn = document.createElement('span');
+   digitalSmallEn.className = "digital__small digital__small_en";
+   digitalEn.appendChild(digitalSmallEn);
+   digitalSmallEn.innerHTML = `${keyboardRus[i][j][3]}`
+
+   const digitalShiftEn = document.createElement('span');
+   digitalShiftEn.className = "digital__shift digital__shift_en hidden";
+   digitalEn.appendChild(digitalShiftEn);
+   digitalShiftEn.innerHTML = `${keyboardRus[i][j][4]}`
 };
-};
+}
+
