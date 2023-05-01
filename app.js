@@ -12,6 +12,11 @@ const virtualKeyboardLangRu = document.createElement('div');
 virtualKeyboardLangRu.className = "virtual-keyboard-ru";
 wrapper.append(virtualKeyboardLangRu);
 
+const languageSwitching = document.createElement('div');
+languageSwitching.className = "language-switching";
+languageSwitching.innerText = "Для преключения языка клавиатуры используйте сочетание клавиш SHIFT + CTRL\n *клавиатура создана в операционной системе Windows";
+wrapper.append(languageSwitching);
+
 
 const keyboardRus = [
 [['Backquote', 'ё', 'Ё', '`', '~'],
@@ -67,7 +72,7 @@ const keyboardRus = [
 ['KeyB', 'и', 'И', 'b', 'B'],
 ['KeyN', 'т', 'Т', 'n', 'N'],
 ['KeyM', 'ь', 'Ь', 'm', 'M'],
-['Comma', 'б', 'Б', '.', '<'],
+['Comma', 'б', 'Б', ',', '<'],
 ['Period', 'ю', 'Ю', '.', '>'],
 ['Slash', '.', ',', '/', '?'],
 ['ArrowUp', '▲', '▲', '▲', '▲'],
@@ -136,13 +141,6 @@ let ctrlRightDigital = document.querySelector('.digital.ControlRight');
 let ctrlLeftDigital = document.querySelector('.digital.ControlLeft');
 let metaLeftDigital = document.querySelector('.digital.MetaLeft');
 
-function addClassActive(element) {
-    element.classList.add('active');
-  }
-function removeClassActive(element) {
-    element.classList.remove('active');
-  }
-
   let capslock = false;
 
   const variationCase = () => {
@@ -179,98 +177,129 @@ function removeClassActive(element) {
   document.addEventListener('keydown', function(e) {
     const elem = document.getElementsByClassName(e.code)[0];
     if (e.shiftKey && e.ctrlKey) {
-        addClassActive(elem);
+        elem.classList.add('active');
         variationLang();
         return false;
       }
       switch (e.code) {
         case 'MetaLeft':
-            addClassActive(elem);
+            elem.classList.add('active')
           break;
         case 'Tab':
-          addClassActive(elem);
+          elem.classList.add('active')
           outputPanel.value += '   ';
           break;
         case 'Enter':
-          addClassActive(elem);
+        elem.classList.add('active')
           outputPanel.value += '\n';
           break;
         case 'CapsLock':
-          if (capslock) {
-            removeClassActive(elem);
-            capslock = false;
-          } else {
-            addClassActive(elem);
-            capslock = true;
-          }
-          variationCase();
+            if (capslock) {
+                elem.classList.remove('active');
+                capslock = false;
+            } else {
+                elem.classList.add('active')
+                capslock = true;
+                variationCase();
+            }
         case 'Backspace':
           outputPanel.value = outputPanel.value.substr(0, outputPanel.value.length - 1);
-          addClassActive(elem);
+          elem.classList.add('active')
           break;
         case 'Delete':
-          addClassActive(elem);
+          elem.classList.add('active')
           break;
         case 'AltLeft':
         case 'AltRight':
-          addClassActive(elem);
+          elem.classList.add('active')
           break;
         case 'ShiftLeft':
         case 'ShiftRight':
             e.preventDefault();
-            addClassActive(elem);
+            elem.classList.add('active')
             variationCase();
             break;
         case 'ControlLeft':
         case 'ControlRight':
-          addClassActive(elem);
+          elem.classList.add('active')
           break;
         default:
-          addClassActive(elem);
+          elem.classList.add('active')
           outputPanel.value += elem.querySelectorAll(':not(.hidden)')[1].textContent;
           break;
       }
     }, 10);
+
+    document.addEventListener('keyup', (e) => {
+        const elem = virtualKeyboardLangRu.getElementsByClassName(e.code)[0];
+        elem.classList.remove('active');
+        switch (elem.classList[1]) {
+        case 'ShiftLeft':
+        case 'ShiftRight':
+               elem.classList.remove('active');
+               variationCase();
+        case 'CapsLock':
+            if (capslock !== true) {
+                elem.classList.remove('active');
+                elem.closest('.digital');
+                variationCase();
+              } else {
+               elem.classList.add('active');
+               elem.closest('.digital');
+              }
+              break; 
+        case 'Tab':
+            elem.classList.remove('active');
+            break;
+      };
+    });
+
   virtualKeyboardLangRu.addEventListener('mousedown', (e) => {
     const elem = e.target.closest('.digital');
     switch (elem.classList[1]) {
       case 'Tab':
-       addClassActive(elem);
-        outputPanel.value += ' ';
-        break;
+         elem.classList.add('active')
+         outputPanel.value += ' ';
+         break;
+      case 'MetaLeft':
+         elem.classList.add('active')
+          break;
       case 'Enter':
-       addClassActive(elem);
-        outputPanel.value += '\n';
-        break;
+         elem.classList.add('active')
+         outputPanel.value += '\n';
+         break;
       case 'Delete':
-       addClassActive(elem);
-        break;
+         elem.classList.add('active')
+         break;
       case 'Backspace':
-       addClassActive(elem);
-        outputPanel.value = outputPanel.value.substr(0, outputPanel.value.length - 1);
-        break;
-      case 'CapsLock':
-       addClassActive(elem);
-        if (capslock) {
-          removeClassActive(elem);
-          capslock = false;
-        } else {
-         addClassActive(elem);
-          capslock = true;
-        }
-        variationCase();
+         elem.classList.add('active')
+         outputPanel.value = outputPanel.value.substr(0, outputPanel.value.length - 1);
+         break;
+        case 'CapsLock':
+            elem.classList.add('active');
+            if (capslock) {
+              elem.classList.remove('active');
+              capslock = false;
+            } else {
+              elem.classList.add('active');
+              capslock = true;
+              variationCase();
+            }
       case 'ShiftLeft':
       case 'ShiftRight':
-        e.preventDefault();
-       addClassActive(elem);
+         e.preventDefault();
+         elem.classList.add('active')
        variationCase();
       case 'ControlLeft':
       case 'ControlRight':
-       addClassActive(elem);
-        break;
+         elem.classList.add('active')
+         break;
+      case 'AltLeft':
+      case 'AltRight':
+          elem.classList.add('active')
+          break;
       default:
-       addClassActive(elem);
-  
+       elem.classList.add('active')
         outputPanel.value += elem.querySelectorAll(':not(.hidden)')[1].textContent;
         break;
     }
@@ -281,147 +310,20 @@ function removeClassActive(element) {
     switch (elem.classList[1]) {
       case 'ShiftLeft':
       case 'ShiftRight':
-        removeClassActive(elem);
+        elem.classList.remove('active');
         variationCase();
       case 'CapsLock':
         if (capslock !== true) {
-          removeClassActive(e.target.closest('.digital'));
+          elem.classList.remove('active');
+          elem.closest('.digital');
         } else {
-         addClassActive(e.target.closest('.digital'));
+         elem.classList.add('active');
+         elem.closest('.digital');
+         variationCase();
         }
         break;
       default:
-        removeClassActive(elem);
+        elem.classList.remove('active');
         break;
     }
   });
-  
-  document.addEventListener('keyup', (e) => {
-    const elem = virtualKeyboardLangRu.getElementsByClassName(e.code)[0];
-    removeClassActive(elem);
-    switch (elem.classList[1]) {
-    case 'ShiftLeft':
-        case 'ShiftRight':
-           removeClassActive(elem);
-           variationCase();
-  };
-});
-
-
-/*window.addEventListener('keydown', function(e) {
-    for(let i = 0; i < digitals.length; i++) {
-        if(e.key == digitals[i].textContent) {
-            digitals[i].classList.add('active')
-        }
-        if(e.code == 'Space') {
-            spaceDigital.classList.add('active')
-        }
-        if(e.code == 'AltLeft') {
-            altLeftDigital.classList.add('active')
-        }
-        if(e.code == 'AltRight') {
-            altRightDigital.classList.add('active')
-        }
-        if(e.code == 'ControlRight') {
-            ctrlRightDigital.classList.add('active')
-        }
-        if(e.code == 'ControlLeft') {
-            ctrlLeftDigital.classList.add('active')
-        }
-        if(e.code == 'MetaLeft') {
-            metaLeftDigital.classList.add('active')
-        }
-        if(e.code == 'ShiftRight') {
-            shiftRightDigital.classList.remove('active')
-        }
-        if(e.code == 'ShiftLeft') {
-            shiftLeftDigital.classList.remove('active')
-        }
-        if(e.code == 'CapsLock') {
-            capsLockDigital.classList.toggle('active');
-        }
-    }
-})
-window.addEventListener('keyup', function(e) {
-    for(let i = 0; i <digitals.length; i++) {
-        if(e.key == digitals[i].textContent) {
-            digitals[i].classList.remove('active')
-            digitals[i].classList.add('remove')
-        }
-        if(e.code == 'Space') {
-            spaceDigital.classList.remove('active');
-            spaceDigital.classList.add('remove');
-        }
-        if(e.code == 'ShiftLeft') {
-            shiftRightDigital.classList.remove('active')
-            shiftRightDigital.classList.remove('remove')
-        }
-        if(e.code == 'ShiftRight') {
-            shiftLeftDigital.classList.remove('active')
-            shiftLeftDigital.classList.remove('remove')
-        }
-        if(e.code == 'AltLeft') {
-            altLeftDigital.classList.remove('active')
-            altLeftDigital.classList.remove('remove')
-        }
-        if(e.code == 'AltRight') {
-            altRightDigital.classList.remove('active')
-            altRightDigital.classList.remove('remove')
-        }
-        if(e.code == 'ControlRight') {
-            ctrlRightDigital.classList.remove('active')
-            ctrlRightDigital.classList.remove('remove')
-        }
-        if(e.code == 'ControlLeft') {
-            ctrlLeftDigital.classList.remove('active')
-            ctrlLeftDigital.classList.remove('remove')
-        }
-        if(e.code == 'MetaLeft') {
-            metaLeftDigital.classList.remove('active')
-            metaLeftDigital.classList.remove('remove')
-        }
-        if(e.code == 'MetaLeft') {
-            metaLeftDigital.classList.remove('active')
-            metaLeftDigital.classList.remove('remove')
-        }
-        setTimeout(()=> {
-            digitals[i].classList.remove('remove')
-        },200)
-    }
-})
-
-let lang = 'rus';
-
-const > {
-    cCase onst langBlock = document.querySelectorAll(`.${lang}`);
-    for (let i = 0; i < langBlock.length; i++) {
-      langBlock[i].querySelectorAll('span')[0].classList.toggle('hidden');
-      langBlock[i].querySelectorAll('span')[1].classList.toggle('hidden');
-    }
-  };
-
-  const variationLang = () => {
-    const language = document.querySelectorAll(`.${lang}`);
-    for (let i = 0; i < language.length; i++) {
-      language[i].classList.toggle('hidden');
-      language[i].querySelectorAll('span')[0].classList.toggle('hidden');
-    }
-    if (lang === 'rus') {
-      lang = 'eng';
-      localStorage.setItem('lang', lang);
-    } else {
-      lang = 'rus';
-      localStorage.setItem('lang', lang);
-    }
-    const followingLang = document.querySelectorAll(`.${lang}`);
-    for (let i = 0; i < followingLang.length; i += 1) {
-      followingLang[i].classList.toggle('hidden');
-      followingLang[i].querySelectorAll('span')[0].classList.toggle('hidden');
-    }
-  };
-  
-  if (localStorage.lang === 'eng') {
-    variationLang();
-  }
-
-*/
